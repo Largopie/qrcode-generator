@@ -1,0 +1,16 @@
+.inputWrapper {
+  display: flex;
+  margin: 20px 0;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.inputBox {
+  flex-grow: 1;
+  margin-right: 20;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
