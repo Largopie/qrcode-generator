@@ -12,8 +12,6 @@ import useImageOptions from '../hooks/qrcode/useImageOptions';
 import QRCodeImage from '../components/QRCodeImage';
 
 export default function Home() {
-  console.log(import.meta.env.BASE_URL);
-
   const { mainData, mainDataForQRCode, handleDataChange, handleWidthChange, handleHeightChange, handleMarginChange } = useMainOptions();
   const { dots, handleDotsColorChange, handleDotsTypeChange } = useDotsOptions();
   const { cornersSquare, handleCornersSquareColorChange, handleCornersSquareTypeChange } = useCornersSquareOptions();

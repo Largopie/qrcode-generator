@@ -9,7 +9,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/qrcode-generator',
+    basename: import.meta.env.BASE_URL,
   }
 );
 
