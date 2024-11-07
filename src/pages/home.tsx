@@ -12,7 +12,8 @@ import useImageOptions from '../hooks/qrcode/useImageOptions';
 import QRCodeImage from '../components/QRCodeImage';
 
 export default function Home() {
-  const { mainData, mainDataForQRCode, handleDataChange, handleWidthChange, handleHeightChange, handleMarginChange } = useMainOptions();
+  const { mainData, mainDataForQRCode, imageValue, handleImageChange, handleDataChange, handleWidthChange, handleHeightChange, handleMarginChange } =
+    useMainOptions();
   const { dots, handleDotsColorChange, handleDotsTypeChange } = useDotsOptions();
   const { cornersSquare, handleCornersSquareColorChange, handleCornersSquareTypeChange } = useCornersSquareOptions();
   const { cornersDot, handleCornersDotColorChange, handleCornersDotTypeChange } = useCornersDotOptions();
@@ -46,9 +47,8 @@ export default function Home() {
       <div className={styles.inputContainer}>
         {/* Main Options 입력 */}
 
-        {/* 이미지 삽입 로직 구현 예정 */}
-        {/* <label htmlFor='centerImage'>이미지 선택</label>
-        <input id='centerImage' type='file' value={mainData.imageURL} onChange={(e) => handleImageURLChange(e.target.value)} /> */}
+        <label htmlFor='centerImage'>이미지 선택</label>
+        <input id='centerImage' accept='image/*' type='file' value={imageValue} onChange={handleImageChange} />
 
         <label htmlFor='data'>삽입할 데이터</label>
         <input id='data' value={mainData.data} onChange={(e) => handleDataChange(e.target.value)} className={styles.inputBox} />

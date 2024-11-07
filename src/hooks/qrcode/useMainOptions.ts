@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import useImage from './useImage';
 
 interface MainOptionsForQRCode {
   data: string;
   width: number;
   height: number;
-  imageURL: string;
+  image: string;
   margin: number;
 }
 
@@ -12,7 +13,6 @@ interface MainOptions {
   data: string;
   width: string;
   height: string;
-  imageURL: string;
   margin: string;
 }
 
@@ -20,15 +20,16 @@ const INITIAL_MAIN_OPTIONS: MainOptions = {
   data: 'https://momonow.kr',
   width: '300',
   height: '300',
-  imageURL: '',
   margin: '10',
 };
 
 const useMainOptions = () => {
   const [mainData, setMainData] = useState<MainOptions>(INITIAL_MAIN_OPTIONS);
+  const { imageURL, value: imageValue, handleImageChange } = useImage();
 
   const mainDataForQRCode: MainOptionsForQRCode = {
     ...mainData,
+    image: imageURL,
     width: Number(mainData.width),
     height: Number(mainData.height),
     margin: Number(mainData.margin),
@@ -46,10 +47,6 @@ const useMainOptions = () => {
     setMainData((prev) => ({ ...prev, height }));
   };
 
-  const handleImageURLChange = (imageURL: string) => {
-    setMainData((prev) => ({ ...prev, imageURL }));
-  };
-
   const handleMarginChange = (margin: string) => {
     setMainData((prev) => ({ ...prev, margin }));
   };
@@ -58,7 +55,7 @@ const useMainOptions = () => {
     setMainData(INITIAL_MAIN_OPTIONS);
   };
 
-  return { mainData, mainDataForQRCode, reset, handleDataChange, handleWidthChange, handleHeightChange, handleImageURLChange, handleMarginChange };
+  return { mainData, mainDataForQRCode, imageValue, reset, handleDataChange, handleWidthChange, handleHeightChange, handleImageChange, handleMarginChange };
 };
 
 export default useMainOptions;
