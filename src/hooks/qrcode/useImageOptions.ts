@@ -42,7 +42,14 @@ const useImageOptions = () => {
     setImage(INITIAL_IMAGE_OPTIONS);
   };
 
-  return { image, imageForQRCode, reset, handleHideBackgroundDotsChange, handleImageSizeChange, handleImageMarginChange };
+  return {
+    image,
+    imageForQRCode,
+    reset,
+    handleHideBackgroundDotsChange,
+    handleImageSizeChange,
+    handleImageMarginChange,
+  };
 };
 
 export default useImageOptions;

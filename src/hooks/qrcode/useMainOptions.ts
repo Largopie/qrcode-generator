@@ -55,7 +55,17 @@ const useMainOptions = () => {
     setMainData(INITIAL_MAIN_OPTIONS);
   };
 
-  return { mainData, mainDataForQRCode, imageValue, reset, handleDataChange, handleWidthChange, handleHeightChange, handleImageChange, handleMarginChange };
+  return {
+    mainData,
+    mainDataForQRCode,
+    imageValue,
+    reset,
+    handleDataChange,
+    handleWidthChange,
+    handleHeightChange,
+    handleImageChange,
+    handleMarginChange,
+  };
 };
 
 export default useMainOptions;

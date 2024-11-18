@@ -9,7 +9,8 @@ const INITIAL_CORNERS_SQUARE_OPTION: QRCodeShapeOptions<CornersSquareType> = {
 };
 
 const useCornersSquareOptions = () => {
-  const [cornersSquare, setCornersSquare] = useState<QRCodeShapeOptions<CornersSquareType>>(INITIAL_CORNERS_SQUARE_OPTION);
+  const [cornersSquare, setCornersSquare] =
+    useState<QRCodeShapeOptions<CornersSquareType>>(INITIAL_CORNERS_SQUARE_OPTION);
 
   const handleCornersSquareColorChange = (color: CSSProperties['color']) => {
     setCornersSquare((prev) => ({ ...prev, color }));
