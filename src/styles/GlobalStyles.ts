@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -26,8 +26,19 @@ const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
-    line-height: 1;
+    min-height: 100vh;
+    font-size: 1.6rem;
+    line-height: 1
+  }
+
+  button {
+    all: unset;
+    cursor: pointer;
   }
 
   ol, ul {
@@ -48,6 +59,10 @@ const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
     border-collapse: collapse;
   }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
 `;
 
-export default GlobalStyle;
+export default GlobalStyles;
