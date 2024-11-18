@@ -3,7 +3,8 @@
   "prettier.singleQuote": true,
   "stylelint.enable": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": "explicit"
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   "stylelint.validate": ["css", "postcss", "typescript", "typescriptreact"]
 }
