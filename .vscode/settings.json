@@ -1,0 +1,9 @@
+{
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "stylelint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.validate": ["css", "postcss", "typescript", "typescriptreact"]
+}
