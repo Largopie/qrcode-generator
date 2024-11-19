@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
-import { Input } from './InputContainer';
+import { Input } from '../InputContainer';
 import type { ChangeEvent } from 'react';
 
 const meta: Meta<typeof Input.Text> = {
@@ -49,7 +49,7 @@ export const InputWithLabel: Story = {
     setArgs({ id: 'input-text-with-label' });
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setArgs({ value: e.target.value });
+      setArgs({ value: e.target.valueAsNumber });
     };
 
     return (
