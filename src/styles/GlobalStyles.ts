@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+import { Pretendard } from './font';
 
 const GlobalStyles = createGlobalStyle`
+  ${Pretendard};
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
@@ -27,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    font-family: Pretendard, sans-serif;
     font-size: 62.5%;
   }
 
