@@ -1,5 +1,6 @@
-import { CSSProperties, useState } from 'react';
-import { QRCodeShapeOptions } from '../../types/option';
+import type { CSSProperties } from 'react';
+import { useState } from 'react';
+import type { QRCodeShapeOptions } from '../../types/option';
 
 export type DotsType = 'classy' | 'classy-rounded' | 'dots' | 'extra-rounded' | 'rounded' | 'square';
 

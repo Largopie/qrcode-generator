@@ -1,5 +1,6 @@
-import styled, { css, RuleSet } from 'styled-components';
-import { ButtonSize, ButtonType } from './Button';
+import type { RuleSet } from 'styled-components';
+import styled, { css } from 'styled-components';
+import type { ButtonSize, ButtonType } from './Button';
 import { colorPalette } from '../../../styles/colorPalette';
 
 // button Type 관련 스타일 정의

@@ -1,5 +1,7 @@
-import QRCodeStyling, { FileExtension } from 'qr-code-styling';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import type { FileExtension } from 'qr-code-styling';
+import type QRCodeStyling from 'qr-code-styling';
+import type { ChangeEvent} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface QRCodeImageProps {
   qrCode: QRCodeStyling;

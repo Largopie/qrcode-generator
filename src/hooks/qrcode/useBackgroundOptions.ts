@@ -1,4 +1,5 @@
-import { CSSProperties, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { useState } from 'react';
 
 interface BackGroundOptions {
   color: CSSProperties['color'];

@@ -1,5 +1,5 @@
-import { Gradient } from 'qr-code-styling';
-import { CSSProperties } from 'react';
+import type { Gradient } from 'qr-code-styling';
+import type { CSSProperties } from 'react';
 
 export interface QRCodeShapeOptions<T> {
   color: CSSProperties['color'];

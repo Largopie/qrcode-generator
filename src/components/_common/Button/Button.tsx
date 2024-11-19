@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import { StyledButton } from './Button.style';
 
 export type ButtonType = 'primary' | 'remove';

@@ -3,9 +3,12 @@ import { useEffect, useMemo } from 'react';
 import QRCodeStyling from 'qr-code-styling';
 
 import useMainOptions from '../../hooks/qrcode/useMainOptions';
-import useDotsOptions, { DotsType } from '../../hooks/qrcode/useDotsOptions';
-import useCornersSquareOptions, { CornersSquareType } from '../../hooks/qrcode/useCornersSquareOptions';
-import useCornersDotOptions, { CornersDotType } from '../../hooks/qrcode/useCornersDotOptions';
+import type { DotsType } from '../../hooks/qrcode/useDotsOptions';
+import useDotsOptions from '../../hooks/qrcode/useDotsOptions';
+import type { CornersSquareType } from '../../hooks/qrcode/useCornersSquareOptions';
+import useCornersSquareOptions from '../../hooks/qrcode/useCornersSquareOptions';
+import type { CornersDotType } from '../../hooks/qrcode/useCornersDotOptions';
+import useCornersDotOptions from '../../hooks/qrcode/useCornersDotOptions';
 import useBackgroundOptions from '../../hooks/qrcode/useBackgroundOptions';
 import useImageOptions from '../../hooks/qrcode/useImageOptions';
 import QRCodeImage from '../../components/QRCodeImage';
