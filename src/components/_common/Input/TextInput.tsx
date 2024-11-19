@@ -11,11 +11,11 @@ interface InputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputText = ({ id, width, placeholder = '', value, onChange }: InputProps) => {
+const TextInput = ({ id, width, placeholder = '', value, onChange }: InputProps) => {
   return <StyledInput placeholder={placeholder} width={width} id={id} type='text' value={value} onChange={onChange} />;
 };
 
-export default InputText;
+export default TextInput;
 
 const StyledInput = styled.input<{ width: CSSProperties['width'] }>`
   width: ${({ width }) => width};

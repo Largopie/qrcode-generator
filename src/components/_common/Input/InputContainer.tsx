@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import InputText from './InputText';
 import Label from './Label';
+import TextInput from './TextInput';
 
 const InputContainer = ({ children }: PropsWithChildren) => {
   return <StyledInputContainer>{children}</StyledInputContainer>;
@@ -14,6 +14,6 @@ const StyledInputContainer = styled.div`
 `;
 
 export const Input = Object.assign(InputContainer, {
-  Text: InputText,
+  Text: TextInput,
   Label: Label,
 });
