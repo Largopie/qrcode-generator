@@ -31,12 +31,13 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-family: Pretendard, sans-serif;
     font-size: 62.5%;
+    color: ${({ theme }) => theme.colors.color};
   }
 
   body {
     min-height: 100vh;
     font-size: 1.6rem;
-    line-height: 1
+    line-height: 1.2;
   }
 
   button {
