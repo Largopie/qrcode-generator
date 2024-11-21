@@ -44,6 +44,8 @@ export const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize }
   gap: 4px;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 500;
   border-radius: 4px;
 
   &:hover {

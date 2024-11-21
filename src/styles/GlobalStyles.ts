@@ -41,8 +41,13 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    all: unset;
+    padding: 0;
+    overflow: visible;
     cursor: pointer;
+    background: inherit;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   ol, ul {
