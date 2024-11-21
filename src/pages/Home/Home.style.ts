@@ -19,6 +19,7 @@ export const MainWrapper = styled.div`
 export const OptionContainer = styled.section`
   display: flex;
   flex-direction: column;
+  gap: 0.4rem;
   width: 68rem;
   padding: 4rem;
 `;
