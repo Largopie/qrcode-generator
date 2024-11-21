@@ -1,9 +1,9 @@
 import type { RuleSet } from 'styled-components';
 import styled, { css } from 'styled-components';
-import type { ButtonSize, ButtonType } from './Button';
+import type { ButtonSize, ButtonVariant } from './Button';
 import { colorPalette } from '../../../styles/colorPalette';
 
-// button Type 관련 스타일 정의
+// button Variant 관련 스타일 정의
 const primary = css`
   color: ${(props) => props.theme.colors.background};
   background-color: ${({ theme }) => theme.colors.main};
@@ -15,7 +15,7 @@ const remove = css`
   border: 1px solid ${colorPalette.red};
 `;
 
-const buttonType: Record<ButtonType, RuleSet<object>> = {
+const buttonVariant: Record<ButtonVariant, RuleSet<object>> = {
   primary,
   remove,
 };
@@ -36,9 +36,9 @@ const buttonSize: Record<ButtonSize, RuleSet<object>> = {
   s: small,
 };
 
-export const StyledButton = styled.button<{ type: ButtonType; size: ButtonSize }>`
-  ${({ type }) => buttonType[type]}
-  ${({ size }) => buttonSize[size]}
+export const StyledButton = styled.button<{ $variant: ButtonVariant; $size: ButtonSize }>`
+  ${({ $variant }) => buttonVariant[$variant]}
+  ${({ $size }) => buttonSize[$size]}
   
   display: flex;
   gap: 4px;

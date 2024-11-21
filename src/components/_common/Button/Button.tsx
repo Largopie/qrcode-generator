@@ -1,17 +1,17 @@
-import type { PropsWithChildren } from 'react';
+import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import { StyledButton } from './Button.style';
 
-export type ButtonType = 'primary' | 'remove';
+export type ButtonVariant = 'primary' | 'remove';
 export type ButtonSize = 's' | 'm';
 
-interface ButtonProps {
-  type: ButtonType;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: ButtonVariant;
   size: ButtonSize;
 }
 
-const Button = ({ type = 'primary', size = 'm', children }: PropsWithChildren<ButtonProps>) => {
+const Button = ({ variant = 'primary', size = 'm', onClick, children }: PropsWithChildren<ButtonProps>) => {
   return (
-    <StyledButton type={type} size={size}>
+    <StyledButton $variant={variant} type='button' $size={size} onClick={onClick}>
       {children}
     </StyledButton>
   );
