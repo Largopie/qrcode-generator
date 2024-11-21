@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import * as S from './Home.style';
 
 import QRCodeStyling from 'qr-code-styling';
 
@@ -13,6 +14,7 @@ import useBackgroundOptions from '../../hooks/qrcode/useBackgroundOptions';
 import useImageOptions from '../../hooks/qrcode/useImageOptions';
 
 import DownloadQRCode from '../../components/QRCode/DownloadQRCode';
+import OptionContainer from '../../components/_common/OptionContainer/OptionContainer';
 
 export default function Home() {
   const {
@@ -54,158 +56,177 @@ export default function Home() {
   }, [qrCode, mainDataForQRCode]);
 
   return (
-    <>
-      <h1>QRCode Generator</h1>
-      <div>
-        {/* Main Options 입력 */}
-        <div>
-          <label htmlFor='centerImage'>이미지 선택</label>
-          <input id='centerImage' accept='image/*' type='file' value={imageValue} onChange={handleImageChange} />
-        </div>
+    <S.MainContainer>
+      <S.MainWrapper>
+        <S.OptionContainer>
+          {/* Main Options 입력 */}
+          <OptionContainer open title='기본 옵션 (Default Option)' width='100%'>
+            <div>
+              <label htmlFor='centerImage'>이미지 선택</label>
+              <input id='centerImage' accept='image/*' type='file' value={imageValue} onChange={handleImageChange} />
+            </div>
 
-        <div>
-          <label htmlFor='data'>삽입할 데이터</label>
-          <input id='data' value={mainData.data} onChange={(e) => handleDataChange(e.target.value)} />
-        </div>
+            <div>
+              <label htmlFor='data'>삽입할 데이터</label>
+              <input id='data' value={mainData.data} onChange={(e) => handleDataChange(e.target.value)} />
+            </div>
 
-        <div>
-          <label htmlFor='width'>너비(width)</label>
-          <input
-            id='width'
-            value={String(mainData.width)}
-            type='number'
-            onChange={(e) => handleWidthChange(e.target.value)}
-          />
-        </div>
+            <div>
+              <label htmlFor='width'>너비(width)</label>
+              <input
+                id='width'
+                value={String(mainData.width)}
+                type='number'
+                onChange={(e) => handleWidthChange(e.target.value)}
+              />
+            </div>
 
-        <div>
-          <label htmlFor='height'>높이(height)</label>
-          <input
-            id='height'
-            value={String(mainData.height)}
-            type='number'
-            onChange={(e) => handleHeightChange(e.target.value)}
-          />
-        </div>
+            <div>
+              <label htmlFor='height'>높이(height)</label>
+              <input
+                id='height'
+                value={String(mainData.height)}
+                type='number'
+                onChange={(e) => handleHeightChange(e.target.value)}
+              />
+            </div>
 
-        <div>
-          <label htmlFor='margin'>테두리 공백(margin)</label>
-          <input
-            id='margin'
-            value={String(mainData.margin)}
-            min={0}
-            max={10000}
-            type='number'
-            onChange={(e) => handleMarginChange(e.target.value)}
-          />
-        </div>
+            <div>
+              <label htmlFor='margin'>테두리 공백(margin)</label>
+              <input
+                id='margin'
+                value={String(mainData.margin)}
+                min={0}
+                max={10000}
+                type='number'
+                onChange={(e) => handleMarginChange(e.target.value)}
+              />
+            </div>
+          </OptionContainer>
 
-        {/* Dots Options 입력 */}
-        <div>
-          <label htmlFor='dots-type'>Dots Type</label>
-          <select id='dots-type' onChange={(e) => handleDotsTypeChange(e.target.value as DotsType)} value={dots.type}>
-            <option value=''>None</option>
-            <option value='classy'>Classy</option>
-            <option value='classy-rounded'>Classy Rounded</option>
-            <option value='dots'>Dots</option>
-            <option value='extra-rounded'>Extra Rounded</option>
-            <option value='rounded'>Rounded</option>
-            <option value='square'>square</option>
-          </select>
-        </div>
+          {/* Dots Options 입력 */}
+          <OptionContainer title='점 옵션 (Dots Option)' width='100%'>
+            <div>
+              <label htmlFor='dots-type'>Dots Type</label>
+              <select
+                id='dots-type'
+                onChange={(e) => handleDotsTypeChange(e.target.value as DotsType)}
+                value={dots.type}
+              >
+                <option value=''>None</option>
+                <option value='classy'>Classy</option>
+                <option value='classy-rounded'>Classy Rounded</option>
+                <option value='dots'>Dots</option>
+                <option value='extra-rounded'>Extra Rounded</option>
+                <option value='rounded'>Rounded</option>
+                <option value='square'>square</option>
+              </select>
+            </div>
 
-        <div>
-          <label htmlFor='dots-color'>Dots Color</label>
-          <input
-            id='dots-color'
-            type='color'
-            onChange={(e) => handleDotsColorChange(e.target.value)}
-            value={dots.color}
-          />
-        </div>
+            <div>
+              <label htmlFor='dots-color'>Dots Color</label>
+              <input
+                id='dots-color'
+                type='color'
+                onChange={(e) => handleDotsColorChange(e.target.value)}
+                value={dots.color}
+              />
+            </div>
+          </OptionContainer>
 
-        {/* Corners Square Options 입력 */}
-        <div>
-          <label htmlFor='corners-square-type'>Corners Square Type</label>
-          <select
-            id='corners-square-type'
-            onChange={(e) => handleCornersSquareTypeChange(e.target.value as CornersSquareType)}
-            value={cornersSquare.type}
-          >
-            <option value=''>None</option>
-            <option value='dot'>Dot</option>
-            <option value='extra-rounded'>Extra Rounded</option>
-            <option value='square'>square</option>
-          </select>
-        </div>
+          {/* Corners Square Options 입력 */}
+          <OptionContainer title='큰 사각형 옵션 (Corners Square Options)' width='100%'>
+            <div>
+              <label htmlFor='corners-square-type'>Corners Square Type</label>
+              <select
+                id='corners-square-type'
+                onChange={(e) => handleCornersSquareTypeChange(e.target.value as CornersSquareType)}
+                value={cornersSquare.type}
+              >
+                <option value=''>None</option>
+                <option value='dot'>Dot</option>
+                <option value='extra-rounded'>Extra Rounded</option>
+                <option value='square'>square</option>
+              </select>
+            </div>
 
-        <div>
-          <label htmlFor='corners-square-color'>Corners Square Color</label>
-          <input
-            id='corners-square-color'
-            type='color'
-            onChange={(e) => handleCornersSquareColorChange(e.target.value)}
-            value={cornersSquare.color}
-          />
-        </div>
+            <div>
+              <label htmlFor='corners-square-color'>Corners Square Color</label>
+              <input
+                id='corners-square-color'
+                type='color'
+                onChange={(e) => handleCornersSquareColorChange(e.target.value)}
+                value={cornersSquare.color}
+              />
+            </div>
+          </OptionContainer>
 
-        {/* Corners Dot Options 입력 */}
-        <div>
-          <label htmlFor='corners-dot-type'>Corners Dot Type</label>
-          <select
-            id='corners-dot-type'
-            onChange={(e) => handleCornersDotTypeChange(e.target.value as CornersDotType)}
-            value={cornersDot.type}
-          >
-            <option value=''>None</option>
-            <option value='dot'>Dot</option>
-            <option value='square'>square</option>
-          </select>
-        </div>
+          {/* Corners Dot Options 입력 */}
+          <OptionContainer title='큰 점 옵션 (Corners Square Options)' width='100%'>
+            <div>
+              <label htmlFor='corners-dot-type'>Corners Dot Type</label>
+              <select
+                id='corners-dot-type'
+                onChange={(e) => handleCornersDotTypeChange(e.target.value as CornersDotType)}
+                value={cornersDot.type}
+              >
+                <option value=''>None</option>
+                <option value='dot'>Dot</option>
+                <option value='square'>square</option>
+              </select>
+            </div>
 
-        <div>
-          <label htmlFor='corners-dot-color'>Corners Dot Color</label>
-          <input
-            id='corners-dot-color'
-            type='color'
-            onChange={(e) => handleCornersDotColorChange(e.target.value)}
-            value={cornersDot.color}
-          />
-        </div>
+            <div>
+              <label htmlFor='corners-dot-color'>Corners Dot Color</label>
+              <input
+                id='corners-dot-color'
+                type='color'
+                onChange={(e) => handleCornersDotColorChange(e.target.value)}
+                value={cornersDot.color}
+              />
+            </div>
+          </OptionContainer>
 
-        {/* Background Options 입력 */}
-        <div>
-          <label htmlFor='background-color'>Background Color</label>
-          <input
-            id='background-color'
-            type='color'
-            onChange={(e) => handleBackgroundColorChange(e.target.value)}
-            value={background.color}
-          />
-        </div>
+          {/* Background Options 입력 */}
+          <OptionContainer title='배경 옵션 (Background Options)' width='100%'>
+            <div>
+              <label htmlFor='background-color'>Background Color</label>
+              <input
+                id='background-color'
+                type='color'
+                onChange={(e) => handleBackgroundColorChange(e.target.value)}
+                value={background.color}
+              />
+            </div>
+          </OptionContainer>
 
-        {/* Image Options 입력 */}
-        <div>
-          <label htmlFor='hide-background-dots'>Hide Background Dots</label>
-          <input
-            id='hide-background-dots'
-            type='checkbox'
-            onChange={(e) => handleHideBackgroundDotsChange(e.target.checked)}
-            checked={image.hideBackgroundDots}
-          />
-        </div>
+          {/* Image Options 입력 */}
+          <OptionContainer title='이미지 옵션 (Image Options)' width='100%'>
+            <div>
+              <label htmlFor='hide-background-dots'>Hide Background Dots</label>
+              <input
+                id='hide-background-dots'
+                type='checkbox'
+                onChange={(e) => handleHideBackgroundDotsChange(e.target.checked)}
+                checked={image.hideBackgroundDots}
+              />
+            </div>
 
-        <div>
-          <label htmlFor='image-size'>Image Size</label>
-          <input id='image-size' onChange={(e) => handleImageSizeChange(e.target.value)} value={image.imageSize} />
-        </div>
+            <div>
+              <label htmlFor='image-size'>Image Size</label>
+              <input id='image-size' onChange={(e) => handleImageSizeChange(e.target.value)} value={image.imageSize} />
+            </div>
 
-        <div>
-          <label htmlFor='image-margin'>Image Margin</label>
-          <input id='image-margin' onChange={(e) => handleImageMarginChange(e.target.value)} value={image.margin} />
-        </div>
-        <DownloadQRCode qrCode={qrCode} />
-      </div>
-    </>
+            <div>
+              <label htmlFor='image-margin'>Image Margin</label>
+              <input id='image-margin' onChange={(e) => handleImageMarginChange(e.target.value)} value={image.margin} />
+            </div>
+          </OptionContainer>
+        </S.OptionContainer>
+        <S.PreviewContainer>
+          <DownloadQRCode qrCode={qrCode} />
+        </S.PreviewContainer>
+      </S.MainWrapper>
+    </S.MainContainer>
   );
 }
