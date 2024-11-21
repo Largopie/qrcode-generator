@@ -11,7 +11,8 @@ import type { CornersDotType } from '../../hooks/qrcode/useCornersDotOptions';
 import useCornersDotOptions from '../../hooks/qrcode/useCornersDotOptions';
 import useBackgroundOptions from '../../hooks/qrcode/useBackgroundOptions';
 import useImageOptions from '../../hooks/qrcode/useImageOptions';
-import QRCodeImage from '../../components/QRCodeImage';
+
+import DownloadQRCode from '../../components/QRCode/DownloadQRCode';
 
 export default function Home() {
   const {
@@ -34,7 +35,7 @@ export default function Home() {
   const qrCode = useMemo(() => {
     return new QRCodeStyling({
       ...mainDataForQRCode,
-      type: 'svg',
+      type: 'canvas',
       dotsOptions: dots,
       cornersSquareOptions: cornersSquare,
       cornersDotOptions: cornersDot,
@@ -57,7 +58,6 @@ export default function Home() {
       <h1>QRCode Generator</h1>
       <div>
         {/* Main Options 입력 */}
-
         <div>
           <label htmlFor='centerImage'>이미지 선택</label>
           <input id='centerImage' accept='image/*' type='file' value={imageValue} onChange={handleImageChange} />
@@ -204,7 +204,7 @@ export default function Home() {
           <label htmlFor='image-margin'>Image Margin</label>
           <input id='image-margin' onChange={(e) => handleImageMarginChange(e.target.value)} value={image.margin} />
         </div>
-        <QRCodeImage qrCode={qrCode} />
+        <DownloadQRCode qrCode={qrCode} />
       </div>
     </>
   );
