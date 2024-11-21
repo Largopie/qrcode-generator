@@ -69,6 +69,12 @@ const GlobalStyles = createGlobalStyle`
     border-collapse: collapse;
   }
 
+  a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer
+  }
+
   *, *::before, *::after {
     box-sizing: border-box;
   }
