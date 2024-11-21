@@ -5,4 +5,5 @@ export const colorPalette = {
   darkblue: '#6272A4',
   purple: '#BD93F9',
   red: '#FF5555',
+  white: '#FFFFFF',
 };
