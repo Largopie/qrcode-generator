@@ -7,10 +7,11 @@ import type { CSSProperties } from 'styled-components';
 interface OptionContainerProps {
   title: string;
   width: CSSProperties['width'];
+  open?: boolean;
 }
 
-const OptionContainer = ({ title, width, children }: PropsWithChildren<OptionContainerProps>) => {
-  const [isOpen, setIsOpen] = useState(false);
+const OptionContainer = ({ open = false, title, width, children }: PropsWithChildren<OptionContainerProps>) => {
+  const [isOpen, setIsOpen] = useState(open);
 
   const toggledIsOpen = () => {
     setIsOpen((prevState) => !prevState);
