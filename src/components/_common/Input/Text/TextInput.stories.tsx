@@ -15,7 +15,7 @@ const meta: Meta<typeof Input.Text> = {
     onChange: { description: '입력되는 값을 변경하기 위한 핸들러 함수입니다.' },
   },
   args: {
-    placeholder: '이름을 입력하세요',
+    placeholder: '텍스트를 입력하세요',
     value: '',
     width: '40rem',
   },

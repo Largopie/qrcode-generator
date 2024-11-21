@@ -17,7 +17,7 @@ const meta: Meta<typeof Input.Number> = {
     onChange: { description: '입력되는 값을 변경하기 위한 핸들러 함수입니다.' },
   },
   args: {
-    placeholder: '나이를 입력하세요',
+    placeholder: '숫자를 입력하세요',
     value: '',
     width: '40rem',
     min: 0,
