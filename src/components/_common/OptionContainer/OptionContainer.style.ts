@@ -5,6 +5,7 @@ import { colorPalette } from '../../../styles/colorPalette';
 export const Wrapper = styled.section<{ $width: CSSProperties['width'] }>`
   width: ${({ $width }) => $width};
   background-color: inherit;
+  border: 1px solid ${({ theme }) => theme.colors.main};
   border-radius: 4px 4px 0 0;
 `;
 
@@ -18,7 +19,7 @@ export const HeaderButton = styled.button`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.background};
   background-color: ${colorPalette.darkblue};
-  border-radius: 4px 4px 0 0;
+  border-radius: 3px 3px 0 0;
 
   &:hover {
     color: ${({ theme }) => theme.colors.main};

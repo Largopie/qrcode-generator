@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colorPalette } from '../../styles/colorPalette';
 
 export const MainContainer = styled.main`
   display: flex;
@@ -11,7 +12,7 @@ export const MainContainer = styled.main`
 
 export const MainWrapper = styled.div`
   display: flex;
-  width: 114rem;
+  max-width: 114rem;
   border: 4px solid ${({ theme }) => theme.colors.main};
   border-radius: 4px;
 `;
@@ -28,4 +29,5 @@ export const PreviewContainer = styled.section`
   display: flex;
   flex-direction: column;
   padding: 4rem;
+  background-color: ${colorPalette.white};
 `;
