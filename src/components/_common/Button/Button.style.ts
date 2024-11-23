@@ -46,6 +46,7 @@ export const StyledButton = styled.button<{ $variant: ButtonVariant; $size: Butt
   justify-content: center;
   font-size: 1.6rem;
   font-weight: 500;
+  line-height: 1.6rem;
   border-radius: 4px;
 
   &:hover {
