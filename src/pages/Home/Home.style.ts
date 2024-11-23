@@ -17,7 +17,7 @@ export const MainWrapper = styled.div`
   border-radius: 4px;
 `;
 
-export const OptionContainer = styled.section`
+export const OptionsContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -30,4 +30,9 @@ export const PreviewContainer = styled.section`
   flex-direction: column;
   padding: 4rem;
   background-color: ${colorPalette.white};
+`;
+
+export const OptionFlexWrapper = styled.div`
+  display: flex;
+  gap: 1.2rem;
 `;

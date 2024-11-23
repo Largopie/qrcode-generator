@@ -3,7 +3,6 @@ import * as S from './Home.style';
 
 import QRCodeStyling from 'qr-code-styling';
 
-import useMainOptions from '../../hooks/qrcode/useMainOptions';
 import type { DotsType } from '../../hooks/qrcode/useDotsOptions';
 import useDotsOptions from '../../hooks/qrcode/useDotsOptions';
 import type { CornersSquareType } from '../../hooks/qrcode/useCornersSquareOptions';
@@ -15,18 +14,12 @@ import useImageOptions from '../../hooks/qrcode/useImageOptions';
 
 import DownloadQRCode from '../../components/QRCode/DownloadQRCode';
 import OptionContainer from '../../components/_common/OptionContainer/OptionContainer';
+import { useAtomValue } from 'jotai';
+import { mainOptionAtom } from '../../store/client/mainOption';
+import MainOption from '../../components/options/MainOption/MainOption';
 
 export default function Home() {
-  const {
-    mainData,
-    mainDataForQRCode,
-    imageValue,
-    handleImageChange,
-    handleDataChange,
-    handleWidthChange,
-    handleHeightChange,
-    handleMarginChange,
-  } = useMainOptions();
+  const mainOption = useAtomValue(mainOptionAtom);
   const { dots, handleDotsColorChange, handleDotsTypeChange } = useDotsOptions();
   const { cornersSquare, handleCornersSquareColorChange, handleCornersSquareTypeChange } = useCornersSquareOptions();
   const { cornersDot, handleCornersDotColorChange, handleCornersDotTypeChange } = useCornersDotOptions();
@@ -36,7 +29,7 @@ export default function Home() {
 
   const qrCode = useMemo(() => {
     return new QRCodeStyling({
-      ...mainDataForQRCode,
+      ...mainOption,
       type: 'canvas',
       dotsOptions: dots,
       cornersSquareOptions: cornersSquare,
@@ -47,62 +40,20 @@ export default function Home() {
         crossOrigin: 'anonymous',
       },
     });
-  }, [mainDataForQRCode, cornersDot, cornersSquare, dots, background, imageForQRCode]);
+  }, [mainOption, cornersDot, cornersSquare, dots, background, imageForQRCode]);
 
   useEffect(() => {
     qrCode.update({
-      ...mainDataForQRCode,
+      ...mainOption,
     });
-  }, [qrCode, mainDataForQRCode]);
+  }, [qrCode, mainOption]);
 
   return (
     <S.MainContainer>
       <S.MainWrapper>
-        <S.OptionContainer>
+        <S.OptionsContainer>
           {/* Main Options 입력 */}
-          <OptionContainer open title='기본 옵션 (Default Option)' width='100%'>
-            <div>
-              <label htmlFor='centerImage'>이미지 선택</label>
-              <input id='centerImage' accept='image/*' type='file' value={imageValue} onChange={handleImageChange} />
-            </div>
-
-            <div>
-              <label htmlFor='data'>삽입할 데이터</label>
-              <input id='data' value={mainData.data} onChange={(e) => handleDataChange(e.target.value)} />
-            </div>
-
-            <div>
-              <label htmlFor='width'>너비(width)</label>
-              <input
-                id='width'
-                value={String(mainData.width)}
-                type='number'
-                onChange={(e) => handleWidthChange(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label htmlFor='height'>높이(height)</label>
-              <input
-                id='height'
-                value={String(mainData.height)}
-                type='number'
-                onChange={(e) => handleHeightChange(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <label htmlFor='margin'>테두리 공백(margin)</label>
-              <input
-                id='margin'
-                value={String(mainData.margin)}
-                min={0}
-                max={10000}
-                type='number'
-                onChange={(e) => handleMarginChange(e.target.value)}
-              />
-            </div>
-          </OptionContainer>
+          <MainOption />
 
           {/* Dots Options 입력 */}
           <OptionContainer title='점 옵션 (Dots Option)' width='100%'>
@@ -222,7 +173,7 @@ export default function Home() {
               <input id='image-margin' onChange={(e) => handleImageMarginChange(e.target.value)} value={image.margin} />
             </div>
           </OptionContainer>
-        </S.OptionContainer>
+        </S.OptionsContainer>
         <S.PreviewContainer>
           <DownloadQRCode qrCode={qrCode} />
         </S.PreviewContainer>
