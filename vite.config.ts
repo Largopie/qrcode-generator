@@ -6,7 +6,7 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig(({ mode }) => {
   if (mode === 'production') {
     return {
-      base: '/qrcode-generator/',
+      base: '/qrcode-generator',
       plugins: [react(), svgr()],
     };
   } else {
