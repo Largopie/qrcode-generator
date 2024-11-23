@@ -7,7 +7,7 @@ export const MainContainer = styled.main`
   align-items: center;
   justify-content: center;
   width: 100%;
-  overflow-y: scroll;
+  padding: 4rem 0;
 `;
 
 export const MainWrapper = styled.div`
@@ -21,7 +21,7 @@ export const OptionsContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  width: 68rem;
+  width: 76rem;
   padding: 4rem;
 `;
 

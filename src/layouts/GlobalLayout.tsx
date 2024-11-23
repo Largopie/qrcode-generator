@@ -1,13 +1,17 @@
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import styled from 'styled-components';
+import Header from '../components/Header';
 
 const GlobalLayout = () => {
   return (
-    <GlobalWrapper>
-      <Outlet />
+    <>
+      <GlobalWrapper>
+        <Header />
+        <Outlet />
+      </GlobalWrapper>
       <Footer />
-    </GlobalWrapper>
+    </>
   );
 };
 
@@ -18,8 +22,8 @@ const GlobalWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  width: 114rem;
+  min-height: calc(100vh - 7.2rem);
+  margin: auto;
   overflow-y: scroll;
-  background-color: ${({ theme }) => theme.colors.background};
 `;

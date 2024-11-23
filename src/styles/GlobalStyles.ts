@@ -32,6 +32,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: Pretendard, sans-serif;
     font-size: 62.5%;
     color: ${({ theme }) => theme.colors.color};
+    background-color: ${({ theme }) => theme.colors.background};
   }
 
   body {
