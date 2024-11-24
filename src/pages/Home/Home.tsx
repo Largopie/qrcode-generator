@@ -3,8 +3,6 @@ import * as S from './Home.style';
 
 import QRCodeStyling from 'qr-code-styling';
 
-import type { DotsType } from '../../hooks/qrcode/useDotsOptions';
-import useDotsOptions from '../../hooks/qrcode/useDotsOptions';
 import type { CornersSquareType } from '../../hooks/qrcode/useCornersSquareOptions';
 import useCornersSquareOptions from '../../hooks/qrcode/useCornersSquareOptions';
 import type { CornersDotType } from '../../hooks/qrcode/useCornersDotOptions';
@@ -17,10 +15,12 @@ import OptionContainer from '../../components/_common/OptionContainer/OptionCont
 import { useAtomValue } from 'jotai';
 import { mainOptionAtom } from '../../store/client/mainOption';
 import MainOption from '../../components/options/MainOption/MainOption';
+import DotsOption from '../../components/options/DotsOption/DotsOption';
+import { dotsOptionAtom } from '../../store/client/dotsOption';
 
 export default function Home() {
   const mainOption = useAtomValue(mainOptionAtom);
-  const { dots, handleDotsColorChange, handleDotsTypeChange } = useDotsOptions();
+  const dotsOption = useAtomValue(dotsOptionAtom);
   const { cornersSquare, handleCornersSquareColorChange, handleCornersSquareTypeChange } = useCornersSquareOptions();
   const { cornersDot, handleCornersDotColorChange, handleCornersDotTypeChange } = useCornersDotOptions();
   const { background, handleBackgroundColorChange } = useBackgroundOptions();
@@ -31,7 +31,7 @@ export default function Home() {
     return new QRCodeStyling({
       ...mainOption,
       type: 'canvas',
-      dotsOptions: dots,
+      dotsOptions: dotsOption,
       cornersSquareOptions: cornersSquare,
       cornersDotOptions: cornersDot,
       backgroundOptions: background,
@@ -40,7 +40,7 @@ export default function Home() {
         crossOrigin: 'anonymous',
       },
     });
-  }, [mainOption, cornersDot, cornersSquare, dots, background, imageForQRCode]);
+  }, [mainOption, cornersDot, cornersSquare, dotsOption, background, imageForQRCode]);
 
   useEffect(() => {
     qrCode.update({
@@ -56,35 +56,7 @@ export default function Home() {
           <MainOption />
 
           {/* Dots Options 입력 */}
-          <OptionContainer title='점 옵션 (Dots Option)' width='100%'>
-            <div>
-              <label htmlFor='dots-type'>Dots Type</label>
-              <select
-                id='dots-type'
-                onChange={(e) => handleDotsTypeChange(e.target.value as DotsType)}
-                value={dots.type}
-              >
-                <option value=''>None</option>
-                <option value='classy'>Classy</option>
-                <option value='classy-rounded'>Classy Rounded</option>
-                <option value='dots'>Dots</option>
-                <option value='extra-rounded'>Extra Rounded</option>
-                <option value='rounded'>Rounded</option>
-                <option value='square'>square</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor='dots-color'>Dots Color</label>
-              <input
-                id='dots-color'
-                type='color'
-                onChange={(e) => handleDotsColorChange(e.target.value)}
-                value={dots.color}
-              />
-            </div>
-          </OptionContainer>
-
+          <DotsOption />
           {/* Corners Square Options 입력 */}
           <OptionContainer title='큰 사각형 옵션 (Corners Square Options)' width='100%'>
             <div>
