@@ -3,8 +3,6 @@ import * as S from './Home.style';
 
 import QRCodeStyling from 'qr-code-styling';
 
-import type { CornersDotType } from '../../hooks/qrcode/useCornersDotOptions';
-import useCornersDotOptions from '../../hooks/qrcode/useCornersDotOptions';
 import useBackgroundOptions from '../../hooks/qrcode/useBackgroundOptions';
 import useImageOptions from '../../hooks/qrcode/useImageOptions';
 
@@ -15,14 +13,15 @@ import { mainOptionAtom } from '../../store/client/mainOption';
 import MainOption from '../../components/options/MainOption/MainOption';
 import DotsOption from '../../components/options/DotsOption/DotsOption';
 import { dotsOptionAtom } from '../../store/client/dotsOption';
-import { cornerSquaresOptionAtom } from '../../store/client/cornerSquaresOption';
+import { cornersDotOptionAtom, cornerSquaresOptionAtom } from '../../store/client/cornerSquaresOption';
 import CornerSquaresOption from '../../components/options/CornerSquaresOption/CornerSquaresOption';
 
 export default function Home() {
   const mainOption = useAtomValue(mainOptionAtom);
   const dotsOption = useAtomValue(dotsOptionAtom);
   const cornerSquaresOption = useAtomValue(cornerSquaresOptionAtom);
-  const { cornersDot, handleCornersDotColorChange, handleCornersDotTypeChange } = useCornersDotOptions();
+  const cornerDotsOption = useAtomValue(cornersDotOptionAtom);
+
   const { background, handleBackgroundColorChange } = useBackgroundOptions();
   const { image, imageForQRCode, handleHideBackgroundDotsChange, handleImageMarginChange, handleImageSizeChange } =
     useImageOptions();
@@ -33,14 +32,14 @@ export default function Home() {
       type: 'canvas',
       dotsOptions: dotsOption,
       cornersSquareOptions: cornerSquaresOption,
-      cornersDotOptions: cornersDot,
+      cornersDotOptions: cornerDotsOption,
       backgroundOptions: background,
       imageOptions: {
         ...imageForQRCode,
         crossOrigin: 'anonymous',
       },
     });
-  }, [mainOption, cornersDot, cornerSquaresOption, dotsOption, background, imageForQRCode]);
+  }, [mainOption, cornerDotsOption, cornerSquaresOption, dotsOption, background, imageForQRCode]);
 
   useEffect(() => {
     qrCode.update({
@@ -59,32 +58,6 @@ export default function Home() {
           <DotsOption />
           {/* Corners Square Options 입력 */}
           <CornerSquaresOption />
-
-          {/* Corners Dot Options 입력 */}
-          <OptionContainer title='큰 점 옵션 (Corners Square Options)' width='100%'>
-            <div>
-              <label htmlFor='corners-dot-type'>Corners Dot Type</label>
-              <select
-                id='corners-dot-type'
-                onChange={(e) => handleCornersDotTypeChange(e.target.value as CornersDotType)}
-                value={cornersDot.type}
-              >
-                <option value=''>None</option>
-                <option value='dot'>Dot</option>
-                <option value='square'>square</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor='corners-dot-color'>Corners Dot Color</label>
-              <input
-                id='corners-dot-color'
-                type='color'
-                onChange={(e) => handleCornersDotColorChange(e.target.value)}
-                value={cornersDot.color}
-              />
-            </div>
-          </OptionContainer>
 
           {/* Background Options 입력 */}
           <OptionContainer title='배경 옵션 (Background Options)' width='100%'>
