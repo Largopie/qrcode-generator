@@ -34,6 +34,9 @@ export const ArrowContainer = styled.div<{ $isOpen: boolean }>`
 `;
 
 export const ContentWrapper = styled.div<{ $hidden: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   width: 100%;
   max-height: ${({ $hidden }) => ($hidden ? 0 : '100rem')};
   padding: ${({ $hidden }) => ($hidden ? '0 1.2rem 0 1.2rem' : '1.2rem')};
