@@ -2,8 +2,6 @@ import { useEffect, useMemo } from 'react';
 import * as S from './Home.style';
 
 import QRCodeStyling from 'qr-code-styling';
-
-import useBackgroundOptions from '../../hooks/qrcode/useBackgroundOptions';
 import useImageOptions from '../../hooks/qrcode/useImageOptions';
 
 import DownloadQRCode from '../../components/QRCode/DownloadQRCode';
@@ -15,14 +13,15 @@ import DotsOption from '../../components/options/DotsOption/DotsOption';
 import { dotsOptionAtom } from '../../store/client/dotsOption';
 import { cornersDotOptionAtom, cornerSquaresOptionAtom } from '../../store/client/cornerSquaresOption';
 import CornerSquaresOption from '../../components/options/CornerSquaresOption/CornerSquaresOption';
+import BackgroundOption from '../../components/options/BackgroundOption/BackgroundOption';
+import { backgroundOptionAtom } from '../../store/client/backgroundOption';
 
 export default function Home() {
   const mainOption = useAtomValue(mainOptionAtom);
   const dotsOption = useAtomValue(dotsOptionAtom);
   const cornerSquaresOption = useAtomValue(cornerSquaresOptionAtom);
   const cornerDotsOption = useAtomValue(cornersDotOptionAtom);
-
-  const { background, handleBackgroundColorChange } = useBackgroundOptions();
+  const backgroundOption = useAtomValue(backgroundOptionAtom);
   const { image, imageForQRCode, handleHideBackgroundDotsChange, handleImageMarginChange, handleImageSizeChange } =
     useImageOptions();
 
@@ -33,13 +32,13 @@ export default function Home() {
       dotsOptions: dotsOption,
       cornersSquareOptions: cornerSquaresOption,
       cornersDotOptions: cornerDotsOption,
-      backgroundOptions: background,
+      backgroundOptions: backgroundOption,
       imageOptions: {
         ...imageForQRCode,
         crossOrigin: 'anonymous',
       },
     });
-  }, [mainOption, cornerDotsOption, cornerSquaresOption, dotsOption, background, imageForQRCode]);
+  }, [mainOption, cornerDotsOption, cornerSquaresOption, dotsOption, backgroundOption, imageForQRCode]);
 
   useEffect(() => {
     qrCode.update({
@@ -51,26 +50,10 @@ export default function Home() {
     <S.MainContainer>
       <S.MainWrapper>
         <S.OptionsContainer>
-          {/* Main Options 입력 */}
           <MainOption />
-
-          {/* Dots Options 입력 */}
           <DotsOption />
-          {/* Corners Square Options 입력 */}
           <CornerSquaresOption />
-
-          {/* Background Options 입력 */}
-          <OptionContainer title='배경 옵션 (Background Options)' width='100%'>
-            <div>
-              <label htmlFor='background-color'>Background Color</label>
-              <input
-                id='background-color'
-                type='color'
-                onChange={(e) => handleBackgroundColorChange(e.target.value)}
-                value={background.color}
-              />
-            </div>
-          </OptionContainer>
+          <BackgroundOption />
 
           {/* Image Options 입력 */}
           <OptionContainer title='이미지 옵션 (Image Options)' width='100%'>
