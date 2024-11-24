@@ -1,15 +1,50 @@
-import type QRCodeStyling from 'qr-code-styling';
-import PreviewQRCode from './PreviewQRCode';
-import useDownload from '../../hooks/qrcode/useDownload';
+import { useEffect, useMemo } from 'react';
+import { useAtomValue } from 'jotai';
 import styled from 'styled-components';
-import Button from '../_common/Button/Button';
+
 import { colorPalette } from '../../styles/colorPalette';
 
-interface DownloadQRCodeProps {
-  qrCode: QRCodeStyling;
-}
+import QRCodeStyling from 'qr-code-styling';
+import useDownload from '../../hooks/qrcode/useDownload';
 
-const DownloadQRCode = ({ qrCode }: DownloadQRCodeProps) => {
+import PreviewQRCode from './PreviewQRCode';
+import Button from '../_common/Button/Button';
+
+import { mainOptionAtom } from '../../store/client/mainOption';
+import { dotsOptionAtom } from '../../store/client/dotsOption';
+import { cornersDotOptionAtom, cornerSquaresOptionAtom } from '../../store/client/cornerSquaresOption';
+import { backgroundOptionAtom } from '../../store/client/backgroundOption';
+import { imageOptionAtom } from '../../store/client/imageOption';
+
+const DownloadQRCode = () => {
+  const mainOption = useAtomValue(mainOptionAtom);
+  const dotsOption = useAtomValue(dotsOptionAtom);
+  const cornerSquaresOption = useAtomValue(cornerSquaresOptionAtom);
+  const cornerDotsOption = useAtomValue(cornersDotOptionAtom);
+  const backgroundOption = useAtomValue(backgroundOptionAtom);
+  const imageOption = useAtomValue(imageOptionAtom);
+
+  const qrCode = useMemo(() => {
+    return new QRCodeStyling({
+      ...mainOption,
+      type: 'canvas',
+      dotsOptions: dotsOption,
+      cornersSquareOptions: cornerSquaresOption,
+      cornersDotOptions: cornerDotsOption,
+      backgroundOptions: backgroundOption,
+      imageOptions: {
+        ...imageOption,
+        crossOrigin: 'anonymous',
+      },
+    });
+  }, [mainOption, cornerDotsOption, cornerSquaresOption, dotsOption, backgroundOption, imageOption]);
+
+  useEffect(() => {
+    qrCode.update({
+      ...mainOption,
+    });
+  }, [qrCode, mainOption]);
+
   const { fileExt, onDownloadClick, onExtensionChange } = useDownload(qrCode);
 
   return (
