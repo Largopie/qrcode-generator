@@ -2,10 +2,8 @@ import { useEffect, useMemo } from 'react';
 import * as S from './Home.style';
 
 import QRCodeStyling from 'qr-code-styling';
-import useImageOptions from '../../hooks/qrcode/useImageOptions';
 
 import DownloadQRCode from '../../components/QRCode/DownloadQRCode';
-import OptionContainer from '../../components/_common/OptionContainer/OptionContainer';
 import { useAtomValue } from 'jotai';
 import { mainOptionAtom } from '../../store/client/mainOption';
 import MainOption from '../../components/options/MainOption/MainOption';
@@ -15,6 +13,8 @@ import { cornersDotOptionAtom, cornerSquaresOptionAtom } from '../../store/clien
 import CornerSquaresOption from '../../components/options/CornerSquaresOption/CornerSquaresOption';
 import BackgroundOption from '../../components/options/BackgroundOption/BackgroundOption';
 import { backgroundOptionAtom } from '../../store/client/backgroundOption';
+import { imageOptionAtom } from '../../store/client/imageOption';
+import ImageOption from '../../components/options/ImageOption/ImageOption';
 
 export default function Home() {
   const mainOption = useAtomValue(mainOptionAtom);
@@ -22,8 +22,7 @@ export default function Home() {
   const cornerSquaresOption = useAtomValue(cornerSquaresOptionAtom);
   const cornerDotsOption = useAtomValue(cornersDotOptionAtom);
   const backgroundOption = useAtomValue(backgroundOptionAtom);
-  const { image, imageForQRCode, handleHideBackgroundDotsChange, handleImageMarginChange, handleImageSizeChange } =
-    useImageOptions();
+  const imageOption = useAtomValue(imageOptionAtom);
 
   const qrCode = useMemo(() => {
     return new QRCodeStyling({
@@ -34,11 +33,11 @@ export default function Home() {
       cornersDotOptions: cornerDotsOption,
       backgroundOptions: backgroundOption,
       imageOptions: {
-        ...imageForQRCode,
+        ...imageOption,
         crossOrigin: 'anonymous',
       },
     });
-  }, [mainOption, cornerDotsOption, cornerSquaresOption, dotsOption, backgroundOption, imageForQRCode]);
+  }, [mainOption, cornerDotsOption, cornerSquaresOption, dotsOption, backgroundOption, imageOption]);
 
   useEffect(() => {
     qrCode.update({
@@ -54,29 +53,7 @@ export default function Home() {
           <DotsOption />
           <CornerSquaresOption />
           <BackgroundOption />
-
-          {/* Image Options 입력 */}
-          <OptionContainer title='이미지 옵션 (Image Options)' width='100%'>
-            <div>
-              <label htmlFor='hide-background-dots'>Hide Background Dots</label>
-              <input
-                id='hide-background-dots'
-                type='checkbox'
-                onChange={(e) => handleHideBackgroundDotsChange(e.target.checked)}
-                checked={image.hideBackgroundDots}
-              />
-            </div>
-
-            <div>
-              <label htmlFor='image-size'>Image Size</label>
-              <input id='image-size' onChange={(e) => handleImageSizeChange(e.target.value)} value={image.imageSize} />
-            </div>
-
-            <div>
-              <label htmlFor='image-margin'>Image Margin</label>
-              <input id='image-margin' onChange={(e) => handleImageMarginChange(e.target.value)} value={image.margin} />
-            </div>
-          </OptionContainer>
+          <ImageOption />
         </S.OptionsContainer>
         <S.PreviewContainer>
           <DownloadQRCode qrCode={qrCode} />
