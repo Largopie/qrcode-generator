@@ -1,9 +1,6 @@
 import { createContext, useContext } from 'react';
 import type { RadioGroupProps } from './RadioGroup';
 
-// export const createRadioContext = <T>() => createContext({} as RadioGroupProps<T>);
-// export const useRadioContext = <T>() => useContext(createRadioContext<T>());
-
 const RadioContext = createContext<RadioGroupProps<any> | null>(null);
 
 export const useRadioContext = <T extends string>() => {

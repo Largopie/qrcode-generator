@@ -6,12 +6,8 @@ interface RadioProps<T> {
   disabled?: boolean;
 }
 
-const Radio = <RadioType extends string>({
-  children,
-  value,
-  disabled = false,
-}: PropsWithChildren<RadioProps<RadioType>>) => {
-  const group = useRadioContext<RadioType>();
+const Radio = <T extends string>({ children, value, disabled = false }: PropsWithChildren<RadioProps<T>>) => {
+  const group = useRadioContext<T>();
 
   return (
     <label>

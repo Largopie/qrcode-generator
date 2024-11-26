@@ -8,12 +8,7 @@ export interface RadioGroupProps<T> {
   onChange: (value: T) => void;
 }
 
-const RadioGroup = <RadioType extends string>({
-  children,
-  name,
-  value,
-  onChange,
-}: PropsWithChildren<RadioGroupProps<RadioType>>) => {
+const RadioGroup = <T,>({ children, name, value, onChange }: PropsWithChildren<RadioGroupProps<T>>) => {
   return (
     <StyledFieldSet>
       <RadioContext.Provider value={{ name, value, onChange }}>{children}</RadioContext.Provider>
