@@ -2,6 +2,7 @@ import { useAtom } from 'jotai';
 import { Input } from '../../_common/Input/InputContainer';
 import OptionContainer from '../../_common/OptionContainer/OptionContainer';
 import { hideBackgroundAtom, imageMarginAtom, imageSizeAtom } from '../../../store/client/imageOption';
+import Toggle from '../../_common/Input/Toggle/Toggle';
 
 const ImageOption = () => {
   const [hide, setHide] = useAtom(hideBackgroundAtom);
@@ -12,7 +13,7 @@ const ImageOption = () => {
     <OptionContainer title='이미지 옵션 (Image Options)' width='100%'>
       <Input>
         <Input.Label id='hide-background-dots' description='배경 가리기 (Hide Background)' />
-        <input id='hide-background-dots' type='checkbox' onChange={(e) => setHide(e.target.checked)} checked={hide} />
+        <Toggle handleToggle={() => setHide((prevHide) => !prevHide)} isToggle={hide} />
       </Input>
 
       <Input>
