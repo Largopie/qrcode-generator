@@ -67,6 +67,7 @@ const DownloadQRCode = () => {
 export default DownloadQRCode;
 
 const Wrapper = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: column;
   gap: 2rem;

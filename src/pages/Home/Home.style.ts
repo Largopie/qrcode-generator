@@ -28,6 +28,7 @@ export const OptionsContainer = styled.section`
 export const PreviewContainer = styled.section`
   display: flex;
   flex-direction: column;
+  width: 38rem;
   padding: 4rem;
   background-color: ${colorPalette.white};
 `;
