@@ -6,6 +6,14 @@ const meta: Meta<typeof Toggle> = {
   title: 'Common/Input/Toggle',
   component: Toggle,
   tags: ['autodocs'],
+  argTypes: {
+    isToggle: {
+      description: '현재 토글의 상태를 나타냅니다.',
+    },
+    handleToggle: {
+      description: '토글의 상태를 핸들링하는 함수입니다.',
+    },
+  },
 };
 
 export default meta;
